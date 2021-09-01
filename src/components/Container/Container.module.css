@@ -1,0 +1,10 @@
+.container {
+  width: 1200px;
+  background-color: rgb(225, 230, 233);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 25px;
+  height: auto;
+}

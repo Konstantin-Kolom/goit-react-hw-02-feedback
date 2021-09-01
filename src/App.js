@@ -1,25 +1,32 @@
-// import logo from './logo.svg';
-// import './App.css';
+import React, { Component } from 'react';
+// import ReactDOM from 'react-dom';
+import Container from './components/Container/Container';
+import FeedbackOptions from './components/Feedback/FeedbackOptions';
+import Statistics from './components/Statistics/Statistics';
 
-// function App() {
-//   return (
-   //  <div className="App">
-   //    <header className="App-header">
-   //      <img src={logo} className="App-logo" alt="logo" />
-   //      <p>
-   //        Edit <code>src/App.js</code> and save to reload.
-   //      </p>
-   //      <a
-   //        className="App-link"
-   //        href="https://reactjs.org"
-   //        target="_blank"
-   //        rel="noopener noreferrer"
-   //      >
-   //        Learn React
-   //      </a>
-   //    </header>
-   //  </div>
-//   );
-// }
+class App extends Component {
+  //   state = {
+  //     good: 0,
+  //     neutral: 0,
+  //     bad: 0,}
 
-// export default App;
+  render() {
+    // const { good } = this.state;
+    // const { neutral } = this.state;
+    // const { bad } = this.state;
+    return (
+      <Container>
+        <h1>Please leave feedback</h1>
+
+        <FeedbackOptions />
+        <Statistics />
+
+        {/* <FeedbackOptions options={good, neutral, bad} onLeaveFeedback={}> */}
+        {/* Statistics good={} neutral={} bad={} total={} positivePercentage={}> */}
+      </Container>
+    );
+    //  },
+  }
+}
+
+export default App;
