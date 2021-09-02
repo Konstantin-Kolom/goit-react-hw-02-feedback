@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Statistics from '../Statistics/Statistics';
 
 class FeedbackOptions extends Component {
   state = {
@@ -11,11 +12,8 @@ class FeedbackOptions extends Component {
     const targetText = e.target.textContent.toLowerCase();
 
     this.setState(prevState => {
-      // console.log(prevState[targetText]);
       return {
         [targetText]: prevState[targetText] + 1,
-        //   total: prevState.good + prevState.neutral + prevState.bad + 1,
-        //   positiveFeedback: Math.ceil((prevState.good / prevState.total) * 100),
       };
     });
   };
@@ -41,11 +39,13 @@ class FeedbackOptions extends Component {
           Bad
         </button>
 
-        <p>Good: {this.state.good}</p>
-        <p>Neutral: {this.state.neutral}</p>
-        <p>Bad: {this.state.bad}</p>
-        <p>Total: {total}</p>
-        <p>Positive feedback: {positiveFeedback} %</p>
+        <Statistics
+          good={this.state.good}
+          neutral={this.state.neutral}
+          bad={this.state.bad}
+          total={total}
+          positivePercentage={positiveFeedback}
+        />
       </div>
     );
   }
