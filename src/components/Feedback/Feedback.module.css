@@ -1,0 +1,26 @@
+.listButton {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.itemButton {
+  margin: 10px;
+}
+
+.feedback {
+  font-weight: 600;
+  min-width: 100px;
+  min-height: 35px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: #525f96;
+  background-color: #d9e3e6;
+  border: 1px solid;
+}
+
+.feedback:hover {
+  color: #ffff;
+  background-color: #ebc548;
+  border: 2px solid;
+}

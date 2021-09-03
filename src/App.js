@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Section from './components/Section/Section';
 import FeedbackOptions from './components/Feedback/FeedbackOptions';
+import Statistics from './components/Statistics/Statistics';
 
 class App extends Component {
   state = {
@@ -9,11 +10,39 @@ class App extends Component {
     bad: 0,
   };
 
+  countFeedback = e => {
+    const targetText = e.target.textContent.toLowerCase();
+
+    this.setState(prevState => {
+      return {
+        [targetText]: prevState[targetText] + 1,
+      };
+    });
+  };
+
   render() {
+    const total = this.state.good + this.state.neutral + this.state.bad;
+    const positiveFeedback = Math.ceil((this.state.good / total) * 100);
     return (
-      <Section title="Please leave feedback">
-        <FeedbackOptions options={['Good', 'Neutral', 'Bad']} onLeaveFeedback={this.state} />
-      </Section>
+      <>
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            options={['Good', 'Neutral', 'Bad']}
+            onLeaveFeedback={this.state}
+            countFeedback={this.countFeedback}
+          />
+        </Section>
+
+        <Section title="Statistics">
+          <Statistics
+            good={this.state.good}
+            neutral={this.state.neutral}
+            bad={this.state.bad}
+            total={total}
+            positivePercentage={positiveFeedback}
+          />
+        </Section>
+      </>
     );
   }
 }

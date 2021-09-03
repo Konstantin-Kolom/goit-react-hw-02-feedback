@@ -1,38 +1,27 @@
 import React, { Component } from 'react';
-import Statistics from '../Statistics/Statistics';
+import s from './Feedback.module.css';
+
 import PropTypes from 'prop-types';
 
 class FeedbackOptions extends Component {
   state = this.props.onLeaveFeedback;
 
-  countFeedback = e => {
-    const targetText = e.target.textContent.toLowerCase();
-
-    this.setState(prevState => {
-      return {
-        [targetText]: prevState[targetText] + 1,
-      };
-    });
-  };
-
   render() {
-    const total = this.state.good + this.state.neutral + this.state.bad;
-    const positiveFeedback = Math.ceil((this.state.good / total) * 100);
     return (
-      <>
+      <ul className={s.listButton}>
         {this.props.options.map(value => (
-          <button key={value} type="button" onClick={this.countFeedback}>
-            {value}
-          </button>
+          <li className={s.itemButton}>
+            <button
+              className={s.feedback}
+              key={value}
+              type="button"
+              onClick={this.props.countFeedback}
+            >
+              {value}
+            </button>
+          </li>
         ))}
-        <Statistics
-          good={this.state.good}
-          neutral={this.state.neutral}
-          bad={this.state.bad}
-          total={total}
-          positivePercentage={positiveFeedback}
-        />
-      </>
+      </ul>
     );
   }
 }
