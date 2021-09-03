@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import Statistics from '../Statistics/Statistics';
-import PropTypes from 'prop-types';
 
 class FeedbackOptions extends Component {
-  state = this.props.onLeaveFeedback;
+  state = {
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  };
 
   countFeedback = e => {
     const targetText = e.target.textContent.toLowerCase();
@@ -15,16 +18,27 @@ class FeedbackOptions extends Component {
     });
   };
 
+  countTotalFeedback = prevState => {
+    this.setState(() => {
+      return { total: prevState.good + prevState.neutral + prevState.bad };
+    });
+  };
+
   render() {
     const total = this.state.good + this.state.neutral + this.state.bad;
     const positiveFeedback = Math.ceil((this.state.good / total) * 100);
     return (
-      <>
-        {this.props.options.map(value => (
-          <button key={value} type="button" onClick={this.countFeedback}>
-            {value}
-          </button>
-        ))}
+      <div>
+        <button type="button" onClick={this.countFeedback}>
+          Good
+        </button>
+        <button type="button" onClick={this.countFeedback}>
+          Neutral
+        </button>
+        <button type="button" onClick={this.countFeedback}>
+          Bad
+        </button>
+
         <Statistics
           good={this.state.good}
           neutral={this.state.neutral}
@@ -32,15 +46,9 @@ class FeedbackOptions extends Component {
           total={total}
           positivePercentage={positiveFeedback}
         />
-      </>
+      </div>
     );
   }
 }
 
 export default FeedbackOptions;
-
-FeedbackOptions.propTypes = {
-  props: PropTypes.arrayOf({
-    options: PropTypes.string.isRequired,
-  }),
-};
