@@ -10,14 +10,14 @@ class FeedbackOptions extends Component {
     return (
       <ul className={s.listButton}>
         {this.props.options.map(value => (
-          <li className={s.itemButton}>
+          <li className={s.itemButton} key={value}>
             <button
               className={s.feedback}
               key={value}
               type="button"
               onClick={this.props.countFeedback}
             >
-              {value}
+              <span className={s.nameBtn}>{value}</span>
             </button>
           </li>
         ))}

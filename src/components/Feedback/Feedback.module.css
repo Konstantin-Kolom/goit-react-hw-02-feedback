@@ -24,3 +24,7 @@
   background-color: #ebc548;
   border: 2px solid;
 }
+
+.nameBtn {
+  text-transform: capitalize;
+}
