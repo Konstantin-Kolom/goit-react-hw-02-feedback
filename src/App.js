@@ -4,11 +4,8 @@ import FeedbackOptions from './components/Feedback/FeedbackOptions';
 import Statistics from './components/Statistics/Statistics';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.total = 0;
-    this.positiveFeedback = 0;
-  }
+  total = 0;
+  positiveFeedback = 0;
 
   state = {
     good: 0,
@@ -16,11 +13,7 @@ class App extends Component {
     bad: 0,
   };
 
-  LeaveFeedback = () => {
-    return this.state;
-  };
-
-  countFeedback = e => {
+  leaveFeedback = e => {
     const targetText = e.target.textContent.toLowerCase();
 
     this.setState(prevState => {
@@ -39,15 +32,12 @@ class App extends Component {
   };
 
   render() {
-    //  const total = this.state.good + this.state.neutral + this.state.bad;
-    //  const positiveFeedback = Math.ceil((this.state.good / total) * 100);
     return (
       <>
         <Section title="Please leave feedback">
           <FeedbackOptions
             options={['good', 'neutral', 'bad']}
-            onLeaveFeedback={this.LeaveFeedback()}
-            countFeedback={this.countFeedback}
+            onLeaveFeedback={this.leaveFeedback}
           />
         </Section>
 
